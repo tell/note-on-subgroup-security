@@ -24,7 +24,7 @@ assert all(decAlt(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ i
 assert all(decAlt(sk, pk, c) == decAlt(sk, pk, rerandAlt(pk, c)) for c in (enc(pk, TE.random_element()) for _ in range(test_nloop)))
 
 assert not all(check(enc(pk, m)) for m in (TE.random_element() for _ in range(test_nloop)))
-# assert all(dec(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ in range(test_nloop)))
+assert all(dec(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ in range(test_nloop)))
 for m in (TE.random_element() for _ in range(test_nloop)):
     c = enc(pk, m)
     cc = rerand(pk, c)
