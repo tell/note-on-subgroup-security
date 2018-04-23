@@ -2,6 +2,8 @@
 
 load("scheme.sage")
 
+test_nloop = 10
+
 def lightCheck2(P):
     if P.is_zero(): return False
     if not (P[0] in Fp2 and P[1] in Fp2): return False
@@ -13,17 +15,17 @@ def rerandAlt(pk, c): return rerand(pk, c, lightCheck2)
 def decAlt(sk, pk, c): return dec(sk, pk, c)
 def shuffleCSAlt(pk, cs, ns): return shuffleCS(pk, cs, ns, rerandAlt)
 
-assert all(checkAlt(enc(pk, m)) for m in (randPoint() for _ in range(10)))
-assert all(decAlt(sk, pk, enc(pk, m)) == m for m in (randPoint() for _ in range(10)))
-assert all(decAlt(sk, pk, c) == decAlt(sk, pk, rerandAlt(pk, c)) for c in (enc(pk, randPoint()) for _ in range(10)))
+assert all(checkAlt(enc(pk, m)) for m in (randPoint() for _ in range(test_nloop)))
+assert all(decAlt(sk, pk, enc(pk, m)) == m for m in (randPoint() for _ in range(test_nloop)))
+assert all(decAlt(sk, pk, c) == decAlt(sk, pk, rerandAlt(pk, c)) for c in (enc(pk, randPoint()) for _ in range(test_nloop)))
 
-assert all(checkAlt(enc(pk, m)) for m in (TE.random_element() for _ in range(10)))
-assert all(decAlt(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ in range(10)))
-assert all(decAlt(sk, pk, c) == decAlt(sk, pk, rerandAlt(pk, c)) for c in (enc(pk, TE.random_element()) for _ in range(10)))
+assert all(checkAlt(enc(pk, m)) for m in (TE.random_element() for _ in range(test_nloop)))
+assert all(decAlt(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ in range(test_nloop)))
+assert all(decAlt(sk, pk, c) == decAlt(sk, pk, rerandAlt(pk, c)) for c in (enc(pk, TE.random_element()) for _ in range(test_nloop)))
 
-assert not all(check(enc(pk, m)) for m in (TE.random_element() for _ in range(10)))
-# assert all(dec(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ in range(10)))
-for m in (TE.random_element() for _ in range(10)):
+assert not all(check(enc(pk, m)) for m in (TE.random_element() for _ in range(test_nloop)))
+# assert all(dec(sk, pk, enc(pk, m)) == m for m in (TE.random_element() for _ in range(test_nloop)))
+for m in (TE.random_element() for _ in range(test_nloop)):
     c = enc(pk, m)
     cc = rerand(pk, c)
     if cc is None: continue
@@ -44,9 +46,8 @@ def randPermutation(l):
 def encOracle(m):
     return enc(pk, m)
 
-def demo():
-    l = 4
-    for _ in range(10):
+def demo(l, nloop=10):
+    for _ in range(nloop):
         print('Begin A(find, l):')
         hs = distinctRandCopoint(l)
         assert all((h2 * h).is_zero() for h in hs)
@@ -79,5 +80,4 @@ def demo():
         print('')
 
 print('Start demo...')
-demo()
-
+demo(4)
