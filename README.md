@@ -1,3 +1,7 @@
+# Demonstration of "A Note on Subgroup Security in Pairing-Based Cryptography"
+
+For the details, see a [paper](https://doi.org/10.1145/3197507.3197514).
+
 # How to Use
 
 First of all, Sage 8.0 or later is required. Then:
@@ -6,10 +10,10 @@ First of all, Sage 8.0 or later is required. Then:
 $ make
 ```
 
-# Status
-
-Sorry, still under construction...
-
 # License
 
 * [MIT License](https://opensource.org/licenses/MIT)
+
+# Status
+
+Sorry, still under construction...
