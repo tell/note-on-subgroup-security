@@ -14,7 +14,7 @@ before_install:
 - env
 - docker pull $MY_TARGET_DIST
 script:
-- make SAGE="docker run -it $MY_TARGET_DIST"
+- make SAGE="docker run -v $TRAVIS_BUILD_DIR:$MY_TARGET_MOUNT -it $MY_TARGET_DIST; cd $MY_TARGET_MOUNT; "
 # after_failure:
 # - tail -n 1000 make.log
 notifications:
