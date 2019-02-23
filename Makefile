@@ -1,4 +1,4 @@
 .DEFAULT_GOAL := demo
-
+SAGE = sage
 demo:
-	sage attack.sage
+	$(SAGE) attack.sage

@@ -13,9 +13,8 @@ env:
 before_install:
 - env
 - docker pull $MY_TARGET_DIST
-- alias sage="docker run -it $MY_TARGET_DIST"
 script:
-- make
+- make SAGE=docker run -it $MY_TARGET_DIST
 # after_failure:
 # - tail -n 1000 make.log
 notifications:
