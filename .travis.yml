@@ -11,12 +11,12 @@ env:
   - MY_MODE="sagemath"
   - MY_TARGET_MOUNT=/tell/note-on-subgroup-security
 before_install:
-- env
+- env | sort
 - docker pull $MY_TARGET_DIST
 - docker run --name $MY_NAME -v $TRAVIS_BUILD_DIR:$MY_TARGET_MOUNT -td $MY_TARGET_DIST /bin/bash
-- docker exec -ti $MY_NAME bash -c "apt update"
+- docker exec -ti $MY_NAME bash -c "sudo apt update"
 install:
-- docker exec -ti $MY_NAME bash -c "apt install make"
+- docker exec -ti $MY_NAME bash -c "sudo apt install make"
 script:
 - docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; make"
 # after_failure:
