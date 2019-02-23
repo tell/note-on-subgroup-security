@@ -14,11 +14,11 @@ before_install:
 - env | sort
 - docker pull $MY_TARGET_DIST
 - docker run --name $MY_NAME -v $TRAVIS_BUILD_DIR:$MY_TARGET_MOUNT -td $MY_TARGET_DIST /bin/bash
-- docker exec -ti $MY_NAME bash -c "sudo apt update"
+- docker exec -ti $MY_NAME bash -c "sudo apt update" > /dev/null
 install:
-- docker exec -ti $MY_NAME bash -c "sudo apt install make"
+- docker exec -ti $MY_NAME bash -c "sudo apt install -y make" > /dev/null
 script:
-- docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; make"
+- docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; sudo make"
 # after_failure:
 # - tail -n 1000 make.log
 notifications:
