@@ -14,9 +14,8 @@ before_install:
 - env
 - docker pull $MY_TARGET_DIST
 - docker run --name $MY_NAME -v $TRAVIS_BUILD_DIR:$MY_TARGET_MOUNT -td $MY_TARGET_DIST /bin/bash
-install:
-before_script:
 script:
+- docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; make"
 # after_failure:
 # - tail -n 1000 make.log
 notifications:
