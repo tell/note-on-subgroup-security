@@ -13,6 +13,6 @@ First of all, Sage 8.0 or later is required. Then:
 $ make
 ```
 
-# License
+# Acknowledgment
 
-* [MIT License](https://opensource.org/licenses/MIT)
+We thank developers of [sagemath/docker-images](https://github.com/sagemath/docker-images) for providing a container of SageMath.
