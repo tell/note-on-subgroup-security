@@ -1,4 +1,4 @@
-# vim: set ft=python expandtab :
+import random
 
 load("scheme.sage")
 
@@ -39,8 +39,8 @@ def distinctRandCopoint(n):
     return rs
 
 def randPermutation(l):
-    s = range(l)
-    shuffle(s)
+    s = list(range(l))
+    random.shuffle(s)
     return tuple(s)
 
 def encOracle(m):
@@ -81,3 +81,5 @@ def demo(l, nloop=10):
 
 print('Start demo...')
 demo(4)
+
+# vim: set ft=python expandtab :
