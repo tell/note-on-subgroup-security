@@ -80,6 +80,6 @@ def demo(l, nloop=10):
         print('')
 
 print('Start demo...')
-demo(4)
+demo(5)
 
 # vim: set ft=python expandtab :
