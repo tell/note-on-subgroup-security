@@ -6,7 +6,7 @@ services:
 env:
   global:
   - MY_NAME=travis-ci
-  - MY_TARGET_DIST=sagemath/sagemath:8.9
+  - MY_TARGET_DIST=sagemath/sagemath
   - MY_MODE="sagemath"
   - MY_TARGET_MOUNT=/tell/note-on-subgroup-security
 before_install:
