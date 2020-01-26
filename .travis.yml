@@ -1,8 +1,7 @@
 language: cpp
-sudo: required
 os: linux
 dist: xenial
-service:
+services:
 - docker
 env:
   global:
