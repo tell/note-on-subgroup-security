@@ -18,7 +18,8 @@ install:
 - docker exec -ti $MY_NAME bash -c "sudo apt install -y make" > /dev/null
 script:
 - docker exec -ti $MY_NAME bash -c "sage -c 'print(f\"SageMath version {sage.version.version}\")'"
-- docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; sudo make"
+- docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; sudo make check"
+- docker exec -ti $MY_NAME bash -c "cd $MY_TARGET_MOUNT; sudo make demo"
 # after_failure:
 # - tail -n 1000 make.log
 notifications:

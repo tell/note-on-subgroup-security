@@ -1,5 +1,3 @@
-# vim: set ft=python expandtab :
-
 def BLS12():
     QPR.<u> = QQ[]
     pu = (1 / 3) * prod(QPR(x) for x in ([-1, 1], [-1, 1], [1, 0, -1, 0, 1])) + u
@@ -55,4 +53,4 @@ def fullCheck2(P):
         return True
     else:
         return False
-
+# vim: set ft=python expandtab :

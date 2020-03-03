@@ -1,5 +1,3 @@
-# vim: set ft=python expandtab :
-
 load("bls_12.sage")
 
 def paramgen():
@@ -17,6 +15,7 @@ def paramgen():
     assert t == y^2
     P = TE([x, y])
     P = h2 * P
+    assert not P.is_zero()
     assert (r * P).is_zero()
     return P
 
@@ -40,8 +39,7 @@ def check(c, f=fullCheck2):
     if c is None: return None
     return f(c[0]) and f(c[1])
 
-def rerand(pk, c, f=fullCheck2):
-    if not check(c, f): return None
+def rerand(pk, c):
     x = randScalar()
     return c[0] + x * g, c[1] + x * pk
 
@@ -49,15 +47,13 @@ def dec(sk, pk, c):
     m = c[1] - sk * c[0]
     return m
 
-def shuffleCS(pk, cs, ns, f=rerand):
+def shuffleCS(pk, cs, ns):
     rs = []
     for n in ns:
-        c = f(pk, cs[n])
+        c = rerand(pk, cs[n])
         rs.append(c)
     return rs
 
 keypair = keygen()
 sk, pk = keypair
-assert all(check(enc(pk, m)) for m in (randPoint() for _ in range(10)))
-assert all(dec(sk, pk, enc(pk, m)) == m for m in (randPoint() for _ in range(10)))
-assert all(dec(sk, pk, c) == dec(sk, pk, rerand(pk, c)) for c in (enc(pk, randPoint()) for _ in range(10)))
+# vim: set ft=python expandtab :
