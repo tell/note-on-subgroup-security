@@ -8,6 +8,6 @@ def test_scheme(num_check=5):
     assert all(dec(sk, pk, c) == dec(sk, pk, rerand(pk, c)) for c in (enc(pk, randPoint()) for _ in range(num_check)))
 
 print(f'Start tests by {__file__}')
-test_scheme(10)
+test_scheme()
 print('Finished.')
 # vim: set ft=python expandtab :

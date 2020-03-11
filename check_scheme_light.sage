@@ -20,6 +20,6 @@ def test_scheme_light(num_check=5):
         assert dec(sk, pk, c) == dec(sk, pk, cc)
 
 print(f'Start tests by {__file__}')
-test_scheme_light(10)
+test_scheme_light()
 print('Finished.')
 # vim: set ft=python expandtab :
